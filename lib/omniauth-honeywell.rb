@@ -1,5 +1,5 @@
-require "omniauth-honeywell/version"
-require "./omniauth/strategies/honeywell"
+require 'omniauth-honeywell/version'
+require 'omniauth/strategies/honeywell'
 
 module Omniauth
   module Honeywell
