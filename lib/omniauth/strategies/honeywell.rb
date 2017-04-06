@@ -12,9 +12,20 @@ module OmniAuth
         :token_url => 'https://api.honeywell.com/oauth2/token'
       }
       
+      def build_access_token
+        Rails.logger.debug "Omniauth build access token"
+        options.token_params.merge!(:headers => {'Authorization' => basic_auth_header })
+        super
+      end
+      
+      def basic_auth_header
+        "Basic " + Base64.strict_encode64("#{options[:client_id]}:#{options[:client_secret]}")
+      end  
+      
       def callback_url
         options[:callback_url] || super
       end      
+      
     end
   end
 end
